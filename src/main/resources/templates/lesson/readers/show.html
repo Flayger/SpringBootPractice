@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница читателя</title>
+</head>
+<body>
+<div>
+
+    <label th:for="name">name <span id="name" th:text="${reader.getName()}"> VALUE </span> </label>
+    <br>
+    <label th:for="year">year <span id="year" th:text="${reader.getYear()}"> VALUE </span> </label>
+    <br>
+
+    <a th:href="@{/lesson/readers/{id}/edit(id=${reader.getId()})}"> Изменить читателя </a>
+
+    <form th:method="DELETE" th:action="@{/lesson/readers/{id}/delete(id=${reader.getId()})}">
+        <input type="submit" value="Удалить читателя">
+    </form>
+
+    <p>Список книг</p>
+    <p th:if="${readerBooks.isEmpty()}">Человек пока не взял ни одной книги</p>
+    <div th:each="book : ${readerBooks}" id="booksReader">
+        <a th:href="@{/lesson/books/{id}(id=${book.getId()})}"
+           th:text="${book.getName()} + ' ' + ${book.getAuthor()} + ' ' + ${book.getYear()}">Книга в списке</a>
+    </div>
+    <br>
+
+    <a href="/lesson/readers" > Вернуться к списку людей</a>
+
+</div>
+</body>
+</html>

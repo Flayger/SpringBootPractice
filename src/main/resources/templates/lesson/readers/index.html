@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей библиотеки</title>
+</head>
+<body>
+
+<p> Список людей</p>
+
+<div th:each="reader: ${readers}">
+
+    <a th:href="@{/lesson/readers/{id}(id=${reader.getId()})}"
+       th:text="${reader.getName()} + '   ' + ${reader.getYear()}">
+        читатель</a>
+</div>
+
+<br>
+
+<a href="/lesson/readers/new"> Создать нового пользователя </a>
+<br>
+<a href="/lesson/books"> Посмотреть все книги</a>
+
+</body>
+</html>

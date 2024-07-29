@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Список всех книг в библиотеке</title>
+</head>
+<body>
+
+<label>Список книг </label>
+<div th:each="book : ${books}">
+    <a th:href="@{/lesson/books/{id}(id=${book.getId()})}"
+       th:text="${book.getName()} + ' ' + ${book.getYear()} + ' ' + ${book.getAuthor()}">Книга в списке</a>
+</div>
+
+<br>
+
+<a href="/lesson/books/new" > Добавить книгу в библиотеку </a>
+<br>
+<a href="/lesson/readers"> Посмотреть всех читателей</a>
+
+</body>
+</html>
